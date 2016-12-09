@@ -30,9 +30,3 @@
 
 # Build folder
 */build/
-
-#libraries for Windows
-tutorial*/visual_libs/
-
-tutorial*/cmake/
-tutorial*/CMakeLists.txt
