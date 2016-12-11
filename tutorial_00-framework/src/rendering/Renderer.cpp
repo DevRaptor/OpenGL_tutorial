@@ -5,11 +5,15 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 
-#include "GameModule.h"
+#include "modules/GameModule.h"
 #include "utility/Log.h"
+#include "utility/FileUtility.h"
 
-Renderer::Renderer(int resolution_x, int resolution_y)
+Renderer::Renderer()
 {
+	int resolution_x = GameModule::resources->GetIntParameter("resolution_x");
+	int resolution_y = GameModule::resources->GetIntParameter("resolution_y");
+
 	window = SDL_CreateWindow(GameModule::resources->GetStringParameter("game_title").c_str(),
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		resolution_x, resolution_y, SDL_WINDOW_OPENGL);
@@ -19,7 +23,6 @@ Renderer::Renderer(int resolution_x, int resolution_y)
 		Logger::Log("Could not create window: ", SDL_GetError(), "\n");
 		std::exit(EXIT_FAILURE);
 	}
-
 
 }
 

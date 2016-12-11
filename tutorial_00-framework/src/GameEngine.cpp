@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <chrono>
 
-#include "GameModule.h"
+#include "modules/GameModule.h"
 #include "utility/Log.h"
 
 using namespace std::chrono_literals;
@@ -36,8 +36,7 @@ GameEngine::GameEngine()
 
 	Logger::Log("Platform: ", SDL_GetPlatform(), "\n");
 
-	renderer = std::make_shared<Renderer>(GameModule::resources->GetIntParameter("resolution_x"),
-		GameModule::resources->GetIntParameter("resolution_y"));
+	renderer = std::make_shared<Renderer>();
 
 
 	state = std::make_shared<GameState>();

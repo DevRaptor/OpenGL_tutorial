@@ -8,13 +8,13 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 
-#include "GameState.h"
+#include "states/GameState.h"
 
 
 class Renderer
 {
 public:
-	Renderer(int resolution_x, int resolution_y);
+	Renderer();
 	~Renderer();
 
 	void Render(std::shared_ptr<GameState> game_state);
