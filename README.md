@@ -11,3 +11,5 @@ Tutorials for OpenGL 3.3 workshops - Polygon Circle of Shadows
   - Copy Data folder to Build folder (Visual workspace path is inside build folder)
 4. Open Visual solution
 5. Build solution
+6. In Solution Explorer right click on the "OpenGl_tutorial" project and select "Set a StartUp Project"
+7. Press F5 to start
