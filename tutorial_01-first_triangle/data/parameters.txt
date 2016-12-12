@@ -1,0 +1,5 @@
+name=value
+game_title=tutorial_01 - first triangle
+resolution_x=800
+resolution_y=600
+vsync=1
