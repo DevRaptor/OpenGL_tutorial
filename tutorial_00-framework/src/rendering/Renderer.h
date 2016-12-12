@@ -10,6 +10,8 @@
 
 #include "states/GameState.h"
 
+#include "rendering/Mesh.h"
+#include "rendering/ShaderProgram.h"
 
 class Renderer
 {
