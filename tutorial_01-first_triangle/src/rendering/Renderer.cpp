@@ -42,22 +42,6 @@ Renderer::Renderer()
 
 	shader_program->UseProgram();
 
-	float ratio = static_cast<float>(resolution_x) / static_cast<float>(resolution_y);
-	glm::mat4 projection = glm::perspective(glm::radians(45.0f), ratio, 0.1f, 100.0f);
-
-	glm::vec3 eye(0, 0, -1);
-	glm::vec3 center(0, 0, 0);
-	glm::vec3 up(0, 1, 0);
-
-	glm::mat4 view = glm::lookAt(eye, center, up);
-
-	glm::mat4 model = glm::mat4(1.0f);
-
-	mvp = projection * view * model;
-
-	//uniforms
-	mvp_uniform = glGetUniformLocation(shader_program->GetProgram(), "mvp");
-
 	mesh = std::make_shared<Mesh>();
 }
 
@@ -72,8 +56,6 @@ void Renderer::Render(std::shared_ptr<GameState> game_state)
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	shader_program->UseProgram();
-
-	glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, &mvp[0][0]);
 
 	if(mesh)
 		mesh->Draw();

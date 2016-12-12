@@ -28,11 +28,7 @@ protected:
 	SDL_Window* window;
 	SDL_GLContext context;
 
-	glm::mat4 mvp;
-
 	std::shared_ptr<ShaderProgram> shader_program;
-
-	GLuint mvp_uniform;
 
 	std::shared_ptr<Mesh> mesh;
 };
