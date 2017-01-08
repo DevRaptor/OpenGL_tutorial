@@ -32,14 +32,14 @@ void Camera::Update()
 {
 	glm::vec3 pos = glm::vec3(0, 0, 0);
 
-	if (GameModule::input->GetKeyState(SDL_SCANCODE_LEFT))
+	if (GameModule::input->GetKeyState(SDL_SCANCODE_A))
 		pos.x = -1.0f;
-	else if (GameModule::input->GetKeyState(SDL_SCANCODE_RIGHT))
+	else if (GameModule::input->GetKeyState(SDL_SCANCODE_D))
 		pos.x = 1.0f;
 
-	if (GameModule::input->GetKeyState(SDL_SCANCODE_DOWN))
+	if (GameModule::input->GetKeyState(SDL_SCANCODE_S))
 		pos.z = 1.0f;
-	else if (GameModule::input->GetKeyState(SDL_SCANCODE_UP))
+	else if (GameModule::input->GetKeyState(SDL_SCANCODE_W))
 		pos.z = -1.0f;
 
 	if (glm::length(pos) > 0.0f)

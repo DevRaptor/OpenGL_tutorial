@@ -153,6 +153,17 @@ Mesh::Mesh()
 		0.667979f, 1.0f - 0.335851f
 	};
 
+	GLfloat normals[] = {
+		0.000000, 0.000000, -1.000000,
+		-1.000000, -0.000000, -0.000000,
+		-0.000000, -0.000000, 1.000000,
+		-0.000001, 0.000000, 1.000000,
+		1.000000, -0.000000, 0.000000,
+		1.000000, 0.000000, 0.000001,
+		0.000000, 1.000000, -0.000000,
+		-0.000000, -1.000000, 0.000000
+	};
+
 	glGenBuffers(1, &vbo_uv);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo_uv);
 
@@ -160,6 +171,8 @@ Mesh::Mesh()
 
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, NULL);
 	glEnableVertexAttribArray(1);
+
+
 
 
 	//texture
