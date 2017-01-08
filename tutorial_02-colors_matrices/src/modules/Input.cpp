@@ -19,6 +19,10 @@ void Input::Update()
 	int x, y;
 	SDL_GetMouseState(&x, &y);
 	mouse_pos = glm::vec2(x, y);
+
+	if (!left_mouse_button_pressed)
+		last_mouse_pos = mouse_pos;
+
 }
 
 bool Input::GetKeyState(SDL_Scancode key_code)
@@ -37,7 +41,7 @@ glm::vec2 Input::GetMousePos()
 glm::vec2 Input::GetMouseDeltaPos()
 {
 	glm::vec2 delta = mouse_pos - last_mouse_pos;
-	mouse_pos = last_mouse_pos;
+	last_mouse_pos = mouse_pos;
 	
 	return delta;
 }

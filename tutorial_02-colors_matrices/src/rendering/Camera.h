@@ -13,11 +13,18 @@ public:
 	void Update();
 
 private:
-	glm::mat4 model;
-	glm::mat4 view;
 	glm::mat4 projection;
 
 	glm::vec3 position;
-	glm::vec3 direction;
-	glm::vec3 up;
+	glm::quat rotation;
+
+	float move_speed;
+	float rotation_speed;
+
+
+	glm::vec3 GetUp();
+	glm::vec3 GetRight();
+
+	void Move(const glm::vec3& direction);
+	void Rotate(const glm::quat &rot);
 };

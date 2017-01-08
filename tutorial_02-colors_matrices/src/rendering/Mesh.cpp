@@ -168,7 +168,7 @@ Mesh::Mesh()
 		&width,
 		&height,
 		&channels,
-		SOIL_LOAD_AUTO);
+		SOIL_LOAD_RGB);
 
 	/* check for an error during the load process */
 	if (!img) {
