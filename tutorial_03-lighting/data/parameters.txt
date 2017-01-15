@@ -1,0 +1,7 @@
+name=value
+game_title=tutorial_03 - lighting
+resolution_x=800
+resolution_y=600
+vsync=1
+camera_move_speed=0.5
+camera_rotation_speed=0.007
