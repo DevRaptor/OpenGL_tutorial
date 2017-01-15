@@ -22,6 +22,6 @@ public:
 	void Update(std::chrono::milliseconds delta_time);
 
 protected:
-	std::shared_ptr<Mesh> mesh;
+	std::vector<std::shared_ptr<Mesh>> meshes;
 	std::shared_ptr<Camera> camera;
 };

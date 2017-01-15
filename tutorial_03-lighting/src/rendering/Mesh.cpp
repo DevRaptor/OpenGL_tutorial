@@ -4,13 +4,13 @@
 
 #include "utility/Log.h"
 
-Mesh::Mesh()
+Mesh::Mesh(const std::string& model_name, glm::vec3 pos)
 {
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> normals;
 	
-	if (!LoadOBJ("data/models/teapot.obj", vertices, uvs, normals))
+	if (!LoadOBJ(model_name, vertices, uvs, normals))
 		return;
 
 
@@ -71,7 +71,7 @@ Mesh::Mesh()
 			}
 		}
 
-		GLuint texture = 0;
+		texture = 0;
 		glActiveTexture(GL_TEXTURE0);
 		glGenTextures(1, &texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
@@ -87,6 +87,8 @@ Mesh::Mesh()
 
 		SOIL_free_image_data(img);
 	}
+
+	SetPosition(pos);
 }
 
 Mesh::~Mesh()
@@ -104,6 +106,16 @@ void Mesh::Draw()
 	glDrawArrays(GL_TRIANGLES, 0, vertex_amount);
 
 	glBindVertexArray(0);
+}
+
+void Mesh::SetPosition(glm::vec3 pos)
+{
+	position = pos;
+}
+
+glm::mat4 Mesh::GetTransform()
+{
+	return glm::translate(glm::mat4(1.0f), position);
 }
 
 bool Mesh::LoadOBJ(const std::string& file_name,

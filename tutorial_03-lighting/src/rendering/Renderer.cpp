@@ -45,7 +45,7 @@ Renderer::Renderer()
 	shader_program->UseProgram();
 
 	mvp_uniform = glGetUniformLocation(shader_program->GetProgram(), "mvp");
-
+	transform_uniform = glGetUniformLocation(shader_program->GetProgram(), "transform");
 }
 
 Renderer::~Renderer()
@@ -63,8 +63,14 @@ void Renderer::Render(std::shared_ptr<GameState> game_state)
 	mvp = game_state->camera->GetMVP();
 	glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, glm::value_ptr(mvp));
 
-	if(game_state->mesh)
-		game_state->mesh->Draw();
-	
+	for (auto mesh : game_state->meshes)
+	{
+		if (mesh)
+		{
+			glUniformMatrix4fv(transform_uniform, 1, GL_FALSE, glm::value_ptr(mesh->GetTransform()));
+			mesh->Draw();
+		}
+	}
+
 	SDL_GL_SwapWindow(window);
 }
