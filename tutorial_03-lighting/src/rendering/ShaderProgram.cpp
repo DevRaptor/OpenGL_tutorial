@@ -20,6 +20,19 @@ ShaderProgram::ShaderProgram(const std::string& vert_path, const std::string& fr
 	const char* vert_code = vert_buffer.c_str();
 	glShaderSource(vert_shader, 1, &vert_code, nullptr);
 	glCompileShader(vert_shader);
+
+	GLint isCompiled = 0;
+	glGetShaderiv(vert_shader, GL_COMPILE_STATUS, &isCompiled);
+	if (isCompiled == GL_FALSE)
+	{
+		GLint maxLength = 0;
+		glGetShaderiv(vert_shader, GL_INFO_LOG_LENGTH, &maxLength);
+		std::string error_message;
+		error_message.reserve(maxLength + 1);
+		glGetShaderInfoLog(vert_shader, maxLength, NULL, &error_message[0]);
+		Logger::Log("Shader vert error: ", std::string(&error_message[0]));
+	}
+
 	glAttachShader(program, vert_shader);
 
 	LoadFileToBuffer(frag_path, frag_buffer);
@@ -27,6 +40,18 @@ ShaderProgram::ShaderProgram(const std::string& vert_path, const std::string& fr
 	const char* frag_code = frag_buffer.c_str();
 	glShaderSource(frag_shader, 1, &frag_code, nullptr);
 	glCompileShader(frag_shader);
+	
+	glGetShaderiv(frag_shader, GL_COMPILE_STATUS, &isCompiled);
+	if (isCompiled == GL_FALSE)
+	{
+		GLint maxLength = 0;
+		glGetShaderiv(frag_shader, GL_INFO_LOG_LENGTH, &maxLength);
+		std::string error_message;
+		error_message.reserve(maxLength + 1);
+		glGetShaderInfoLog(frag_shader, maxLength, NULL, &error_message[0]);
+		Logger::Log("Shader frag error: ", std::string(&error_message[0]));
+	}
+	
 	glAttachShader(program, frag_shader);
 
 	glLinkProgram(program);
